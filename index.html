@@ -21,22 +21,23 @@
             const keywords = document.getElementById('keywords').value;
             fetchNews(keywords);
         });
-
+    
         function fetchNews(keywords) {
             // Use an API to fetch news articles based on keywords
-            // For example, using the NewsAPI (https://newsapi.org/)
-            const apiUrl = `https://newsapi.org/v2/everything?q=${encodeURIComponent(keywords)}&apiKey=f21e09b5ef8140e38d4f0bedf59cd6e1`;
-
+            // Example: NewsAPI (https://newsapi.org/)
+            const apiKey = 'f21e09b5ef8140e38d4f0bedf59cd6e1'; // Replace with your actual API key
+            const apiUrl = `https://newsapi.org/v2/everything?q=${encodeURIComponent(keywords)}&apiKey=${apiKey}`;
+    
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => displayNews(data.articles))
                 .catch(error => console.error('Error:', error));
         }
-
+    
         function displayNews(articles) {
             const newsContainer = document.getElementById('newsContainer');
             newsContainer.innerHTML = ''; // Clear previous results
-
+    
             articles.forEach(article => {
                 const articleElement = document.createElement('div');
                 articleElement.innerHTML = `
@@ -48,5 +49,5 @@
             });
         }
     </script>
-</body>
+    </body>
 </html>
