@@ -1,111 +1,68 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <title>News Aggregator</title>
-
     <!-- Add your CSS here -->
-
 </head>
-
 <body>
-
     <form id="keywordForm">
-
         <input type="text" id="keywords" placeholder="+apple +tech +cars -politics">
-
         <button type="submit">Get News</button>
-
     </form>
 
-
     <div id="newsContainer">
-
         <!-- News articles will be displayed here -->
-
     </div>
 
-
     <script>
-
         document.getElementById('keywordForm').addEventListener('submit', function(e) {
-
-            e.preventDefault(); // Prevent the default form submission
-
+            e.preventDefault();
             const keywords = document.getElementById('keywords').value;
-
             fetchNews(keywords);
-
         });
-
-
+    
         function fetchNews(keywords) {
-
             const apiKey = 'f21e09b5ef8140e38d4f0bedf59cd6e1'; // Replace with your actual API key
-
             const apiUrl = `https://newsapi.org/v2/everything?q=${encodeURIComponent(keywords)}&apiKey=${apiKey}`;
-
-
+    
             fetch(apiUrl)
-
                 .then(response => {
-
-                    if (!response.ok) {
-
-                        throw new Error('Network response was not ok');
-
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Request failed. Status: ' + response.status);
                     }
-
-                    return response.json();
-
                 })
-
-                .then(data => displayNews(data.articles))
-
+                .then(data => {
+                    if (data.status === 'ok') {
+                        displayNews(data.articles);
+                    } else {
+                        throw new Error('API response error: ' + data.message);
+                    }
+                })
                 .catch(error => {
-
-                    console.error('Fetch Error:', error);
-
-                    alert('Sorry, there was an error fetching the news. Please try again later.');
-
+                    console.error('Error:', error);
+                    // Display an error message to the user
+                    const newsContainer = document.getElementById('newsContainer');
+                    newsContainer.innerHTML = '<p>Failed to fetch news. Please try again later.</p>';
                 });
-
         }
-
-
+    
         function displayNews(articles) {
-
             const newsContainer = document.getElementById('newsContainer');
-
             newsContainer.innerHTML = ''; // Clear previous results
-
-
+    
             articles.forEach(article => {
-
                 const articleElement = document.createElement('div');
-
                 articleElement.innerHTML = `
-
                     <h2>${article.title}</h2>
-
                     <p>${article.description}</p>
-
                     <a href="${article.url}" target="_blank">Read more</a>
-
                 `;
-
                 newsContainer.appendChild(articleElement);
-
             });
-
         }
-
     </script>
-
 </body>
-
 </html>
