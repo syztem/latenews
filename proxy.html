@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content with CORS Proxy</title>
+    <title>Lazy Load Iframes on Hover</title>
     <style>
         body, html {
             margin: 0;
@@ -21,56 +21,49 @@
             display: inline-flex;
             height: 100%;
         }
-        .content {
-            width: 50vw; /* Each content div takes 50% of the viewport width */
+        .placeholder, iframe {
+            width: 50vw; /* Each iframe takes 50% of the viewport width */
             height: 100%;
-            box-sizing: border-box;
-            padding: 10px;
-            border: 1px solid #ccc;
-            overflow-y: auto;
+            border: none;
+        }
+        .placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <div class="container" id="content-container">
-            <!-- Content will be dynamically inserted here -->
+        <div class="container">
+            <div class="placeholder" data-src="https://www.macrumors.com/">Hover to load MacRumors</div>
+            <div class="placeholder" data-src="https://www.anandtech.com/">Hover to load AnandTech</div>
+            <div class="placeholder" data-src="https://www.tomshardware.com/">Hover to load Tom's Hardware</div>
+            <div class="placeholder" data-src="https://www.thurrott.com/blog">Hover to load Thurrott</div>
+            <div class="placeholder" data-src="https://www.bleepingcomputer.com/news/">Hover to load Bleeping Computer</div>
+            <div class="placeholder" data-src="https://arstechnica.com/">Hover to load Ars Technica</div>
+            <div class="placeholder" data-src="https://gizmodo.com/">Hover to load Gizmodo</div>
+            <div class="placeholder" data-src="https://news.ycombinator.com/">Hover to load Hacker News</div>
+            <div class="placeholder" data-src="https://www.androidcentral.com/">Hover to load Android Central</div>
+            <div class="placeholder" data-src="https://www.theverge.com/">Hover to load The Verge</div>
+            <div class="placeholder" data-src="https://www.troyhunt.com/">Hover to load Troy Hunt</div>
+            <div class="placeholder" data-src="https://www.schneier.com/">Hover to load Schneier on Security</div>
+            <div class="placeholder" data-src="https://krebsonsecurity.com/">Hover to load Krebs on Security</div>
+            <div class="placeholder" data-src="https://simonwillison.net/">Hover to load Simon Willison</div>
+            <div class="placeholder" data-src="https://www.techspot.com/">Hover to load TechSpot</div>
         </div>
     </div>
 
     <script>
-        const urls = [
-            'https://cors-anywhere.herokuapp.com/https://www.macrumors.com/',
-            'https://cors-anywhere.herokuapp.com/https://www.anandtech.com/',
-            'https://cors-anywhere.herokuapp.com/https://www.tomshardware.com/',
-            'https://cors-anywhere.herokuapp.com/https://www.thurrott.com/blog',
-            'https://cors-anywhere.herokuapp.com/https://www.bleepingcomputer.com/news/',
-            'https://cors-anywhere.herokuapp.com/https://arstechnica.com/',
-            'https://cors-anywhere.herokuapp.com/https://gizmodo.com/',
-            'https://cors-anywhere.herokuapp.com/https://news.ycombinator.com/',
-            'https://cors-anywhere.herokuapp.com/https://www.androidcentral.com/',
-            'https://cors-anywhere.herokuapp.com/https://www.theverge.com/',
-            'https://cors-anywhere.herokuapp.com/https://www.troyhunt.com/',
-            'https://cors-anywhere.herokuapp.com/https://www.schneier.com/',
-            'https://cors-anywhere.herokuapp.com/https://krebsonsecurity.com/',
-            'https://cors-anywhere.herokuapp.com/https://simonwillison.net/',
-            'https://cors-anywhere.herokuapp.com/https://www.techspot.com/'
-        ];
-
-        const container = document.getElementById('content-container');
-
-        urls.forEach(url => {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    const contentDiv = document.createElement('div');
-                    contentDiv.classList.add('content');
-                    contentDiv.innerHTML = data; // Assuming the response is HTML
-                    container.appendChild(contentDiv);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
+        document.querySelectorAll('.placeholder').forEach(placeholder => {
+            placeholder.addEventListener('mouseenter', function() {
+                const src = this.getAttribute('data-src');
+                const iframe = document.createElement('iframe');
+                iframe.src = src;
+                this.parentNode.replaceChild(iframe, this);
+            });
         });
     </script>
 </body>
