@@ -33,6 +33,12 @@
             height: 100%;
             border: none;
         }
+        whitepage {
+             color-scheme: light dark;
+        }
+        whitepage .invert-filter:not(img) {
+             filter: invert() rotate(175deg);
+        }       
         /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
             height: 12px; /* height of the horizontal scrollbar */
@@ -80,13 +86,6 @@
                 background-color: orange;
                 border: none;
             }
-            .whitepage {
-                color-scheme: light dark;
-            }
-            .whitepage .invert-filter:not(img) {
-                filter: invert() rotate(175deg);
-            }       
-          }
 
     </style>
 </head>
@@ -112,7 +111,7 @@
         </div>
     </div>
 
-    <script>tomshardware = document.querySelector(".tomshardware ") window.tomshardware.style.scale = 0.5</script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const lazyIframes = document.querySelectorAll('iframe[data-src]');
@@ -137,5 +136,15 @@
             observer.observe(triggerIframe);
         });
     </script>
+	<script>(function() {
+   	 const toms = document.getElementById("triggerIframe") 
+  	  const tomshardware = document.querySelector(".tomshardware ")
+  	  if (toms) {
+	        toms.style.transform = "scale(0.5)"
+ 	   } else if (tomshardware) {
+      	        tomshardware.style.transform = "scale(0.5)"
+	}	
+	)()
+</script>
 </body>
 </html>
