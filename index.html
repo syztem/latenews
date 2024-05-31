@@ -80,7 +80,14 @@
                 background-color: orange;
                 border: none;
             }
-        }
+            .whitepage {
+                color-scheme: light dark;
+            }
+            .whitepage .invert-filter:not(img) {
+                filter: invert() rotate(175deg);
+            }       
+          }
+
     </style>
 </head>
 <body>
@@ -88,18 +95,18 @@
     <div class="wrapper">
         <div class="container">
             <iframe src="https://brutalist.report/topic/tech?limit=25"></iframe>
-            <iframe src="https://news.ycombinator.com/best" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe> 
+            <iframe src="https://news.ycombinator.com/best" class="whitepage"></iframe> 
             <iframe src="https://www.macrumors.com/"></iframe>
-            <iframe src="https://www.anandtech.com/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe src="https://www.androidcentral.com/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe id="triggerIframe" src="https://www.tomshardware.com/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe data-src="https://arstechnica.com/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe data-src="https://gizmodo.com/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe data-src="https://www.bleepingcomputer.com/news/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe data-src="https://www.thurrott.com/blog" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe data-src="https://www.schneier.com/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe data-src="https://krebsonsecurity.com/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
-            <iframe data-src="https://simonwillison.net/" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg);"></iframe>
+            <iframe src="https://www.anandtech.com/" class="whitepage"></iframe>
+            <iframe src="https://www.androidcentral.com/" class="whitepage"></iframe>
+            <iframe id="triggerIframe" src="https://www.tomshardware.com/" class="whitepage"></iframe>
+            <iframe data-src="https://arstechnica.com/" class="whitepage"></iframe>
+            <iframe data-src="https://gizmodo.com/" class="whitepage"></iframe>
+            <iframe data-src="https://www.bleepingcomputer.com/news/" class="whitepage"></iframe>
+            <iframe data-src="https://www.thurrott.com/blog" class="whitepage"></iframe>
+            <iframe data-src="https://www.schneier.com/" class="whitepage"></iframe>
+            <iframe data-src="https://krebsonsecurity.com/" class="whitepage"></iframe>
+            <iframe data-src="https://simonwillison.net/" class="whitepage"></iframe>
             <iframe data-src="https://www.techspot.com/"></iframe>
             <iframe data-src="https://www.theverge.com/"></iframe>
         </div>
