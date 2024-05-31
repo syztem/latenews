@@ -32,12 +32,13 @@
             height: 100%;
             border: none;
         }
-       iframe.whitepage {
-    	    color-scheme: light dark;
-	}
-	iframe.whitepage *:not(img) {
-    	    filter: invert() rotate(175deg);
-}
+        iframe.whitepage {
+            color-scheme: light dark;		
+            filter: invert(1) hue-rotate(180deg);
+        }
+        iframe.whitepage img {
+            filter: invert(1) hue-rotate(180deg);
+        }
         /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
             height: 12px; /* height of the horizontal scrollbar */
@@ -113,37 +114,26 @@
         document.addEventListener('DOMContentLoaded', () => {
             const lazyIframes = document.querySelectorAll('iframe[data-src]');
 
-            const loadIframes = () => {
-                lazyIframes.forEach(iframe => {
-                    iframe.src = iframe.getAttribute('data-src');
-                    iframe.removeAttribute('data-src');
+            lazyIframes.forEach(iframe => {
+                iframe.addEventListener('load', () => {
                     iframe.classList.add('whitepage');
                 });
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        loadIframes();
-                        observer.disconnect();
-                    }
-                });
+                iframe.src = iframe.getAttribute('data-src');
+                iframe.removeAttribute('data-src');
             });
-
-            const triggerIframe = document.getElementById('triggerIframe');
-            observer.observe(triggerIframe);
         });
     </script>
-	
-    <script>((function() {
-    const toms = document.getElementById("triggerIframe") 
-    const tomshardware = document.querySelector(".tomshardware ")
-    if (toms) {
-        toms.style.transform = "scale(0.5)"
-    } else if (tomshardware) {
-        tomshardware.style.transform = "scale(0.5)"
-    }
-	})() 
+    
+    <script>
+        (function() {
+            const toms = document.getElementById("triggerIframe");
+            const tomshardware = document.querySelector(".tomshardware");
+            if (toms) {
+                toms.style.transform = "scale(0.5)";
+            } else if (tomshardware) {
+                tomshardware.style.transform = "scale(0.5)";
+            }
+        })();
     </script>
 </body>
 </html>
