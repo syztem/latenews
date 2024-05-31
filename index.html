@@ -41,17 +41,55 @@
         .wrapper::-webkit-scrollbar-track {
             background: black;
         }
+        .wrapper::-webkit-scrollbar-button {
+            background-color: orange; /* arrow button color */
+        }
+        /* Custom scrollbar button styles for Firefox */
+        .wrapper {
+            scrollbar-color: orange black;
+        }
+        .wrapper::-webkit-scrollbar-button {
+            background-color: orange;
+        }
+        .wrapper::-webkit-scrollbar-button:single-button {
+            background-color: orange;
+        }
+        /* Additional rules for Firefox scrollbar buttons */
+        @-moz-document url-prefix() {
+            .wrapper {
+                scrollbar-width: thin;
+            }
+            .wrapper::-webkit-scrollbar {
+                display: none;
+            }
+            .wrapper::-moz-scrollbar-button {
+                background-color: orange;
+                border: none;
+            }
+            .wrapper::-moz-scrollbar-button:single-button {
+                background-color: orange;
+                border: none;
+            }
+            .wrapper::-moz-scrollbar-button:decrement {
+                background-color: orange;
+                border: none;
+            }
+            .wrapper::-moz-scrollbar-button:increment {
+                background-color: orange;
+                border: none;
+            }
+        }
     </style>
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <div class="wrapper">
         <div class="container">
-            <iframe src="https://brutalist.report/topic/tech?limit=50" style="font-size: 1.2em;"></iframe>
-            <iframe src="https://news.ycombinator.com/best" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg); font-size: 1.6em;"></iframe>
+            <iframe src="https://brutalist.report/topic/tech?limit=50" style="font-size: 1.6em;"></iframe>
+            <iframe src="https://news.ycombinator.com/best" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg); font-size: 2em;"></iframe>
             <iframe id="triggerIframe" src="https://www.macrumors.com/"></iframe>
             <iframe src="https://www.tomshardware.com/"></iframe>
             <iframe src="https://www.anandtech.com/"></iframe>
