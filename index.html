@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>LateNews</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">   
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LateNews</title>
- 
+    <link rel="manifest" href="/site.webmanifest">  
     <style>
         body, html {
             margin: 0;
@@ -27,14 +27,9 @@
             height: 100%;
         }
         iframe {
-            width: 60vw; /* Each iframe takes 60% of the viewport width */
+            width: 65vw; /* Each iframe takes 60% of the viewport width */
             height: 100%;
             border: none;
-        }
-       <!-- /* Custom scrollbar styles for Firefox */
-        .wrapper {
-            scrollbar-color: orange black; /* thumb color and track color */
-            scrollbar-width: thick; /* thickness of the scrollbar */ -->
         }
         /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
@@ -72,11 +67,11 @@
                 border: none;
             }
             .wrapper::-moz-scrollbar-button:single-button {
-                background-color: orange;
+                color: orange;
                 border: none;
             }
             .wrapper::-moz-scrollbar-button:decrement {
-                background-color: orange;
+                color: orange;
                 border: none;
             }
             .wrapper::-moz-scrollbar-button:increment {
@@ -89,8 +84,8 @@
 <body>
     <div class="wrapper">
         <div class="container">
-            <iframe src="https://brutalist.report/topic/tech?limit=50" style="font-size: 4em;"></iframe>
-            <iframe src="https://news.ycombinator.com/best" style="font-size: 6em; color-scheme: light dark; filter: invert() hue-rotate(-175deg); "></iframe>
+            <iframe src="https://brutalist.report/topic/tech?limit=50"></iframe>
+            <iframe src="https://news.ycombinator.com/best" style="color-scheme: light dark; filter: invert() hue-rotate(-175deg); "></iframe>
             <iframe id="triggerIframe" src="https://www.macrumors.com/"></iframe>
             <iframe src="https://www.tomshardware.com/"></iframe>
             <iframe src="https://www.anandtech.com/"></iframe>
