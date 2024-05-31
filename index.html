@@ -33,10 +33,7 @@
             border: none;
         }
         iframe.whitepage {
-            color-scheme: light dark;		
-            filter: invert(1) hue-rotate(180deg);
-        }
-        iframe.whitepage img {
+            color-scheme: light dark;
             filter: invert(1) hue-rotate(180deg);
         }
         /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
@@ -52,39 +49,17 @@
         .wrapper::-webkit-scrollbar-button {
             background-color: orange; /* arrow button color */
         }
-        /* Custom scrollbar button styles for Firefox */
+        /* Custom scrollbar styles for Firefox */
         .wrapper {
             scrollbar-color: orange black;
         }
-        .wrapper::-webkit-scrollbar-button {
+        .wrapper::-moz-scrollbar {
             background-color: orange;
         }
-        .wrapper::-webkit-scrollbar-button:single-button {
-            background-color: orange;
-        }
-        /* Additional rules for Firefox scrollbar buttons */
         @-moz-document url-prefix() {
             .wrapper {
-                scrollbar-width: thick;
-            }
-            .wrapper::-webkit-scrollbar {
-                display: none;
-            }
-            .wrapper::-moz-scrollbar-button {
-                background-color: orange;
-                border: none;
-            }
-            .wrapper::-moz-scrollbar-button:single-button {
-                background-color: orange;
-                border: none;
-            }
-            .wrapper::-moz-scrollbar-button:decrement {
-                background-color: orange;
-                border: none;
-            }
-            .wrapper::-moz-scrollbar-button:increment {
-                background-color: orange;
-                border: none;
+                scrollbar-width: auto;
+                scrollbar-color: orange black;
             }
         }
     </style>
@@ -93,7 +68,7 @@
     <div class="wrapper">
         <div class="container">
             <iframe src="https://brutalist.report/topic/tech?limit=25"></iframe>
-            <iframe src="https://news.ycombinator.com/best" class="whitepage"></iframe> 
+            <iframe src="https://news.ycombinator.com/best" class="whitepage"></iframe>
             <iframe src="https://www.macrumors.com/"></iframe>
             <iframe src="https://www.anandtech.com/" class="whitepage"></iframe>
             <iframe src="https://www.androidcentral.com/" class="whitepage"></iframe>
@@ -113,11 +88,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const lazyIframes = document.querySelectorAll('iframe[data-src]');
-
             lazyIframes.forEach(iframe => {
-                iframe.addEventListener('load', () => {
-                    iframe.classList.add('whitepage');
-                });
                 iframe.src = iframe.getAttribute('data-src');
                 iframe.removeAttribute('data-src');
             });
@@ -127,11 +98,8 @@
     <script>
         (function() {
             const toms = document.getElementById("triggerIframe");
-            const tomshardware = document.querySelector(".tomshardware");
             if (toms) {
-                toms.style.transform = "scale(0.5)";
-            } else if (tomshardware) {
-                tomshardware.style.transform = "scale(0.5)";
+                toms.style.transform = "scale(0.9)";
             }
         })();
     </script>
