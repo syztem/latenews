@@ -26,31 +26,20 @@
             height: 100%;
             border: none;
         }
-        /* WebKit-specific CSS for styling scrollbars */
-        ::-webkit-scrollbar {
-            height: 12px; /* Adjust the height of the scrollbar */
+        /* Custom scrollbar styles for Firefox */
+        .wrapper {
+            scrollbar-color: orange transparent; /* thumb color and track color */
+            scrollbar-width: thin; /* thickness of the scrollbar */
         }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; /* Color of the track (scrollbar background) */
+        /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
+        .wrapper::-webkit-scrollbar {
+            height: 12px; /* height of the horizontal scrollbar */
         }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888; /* Color of the scrollbar handle */
-            border-radius: 6px; /* Rounded corners for the handle */
+        .wrapper::-webkit-scrollbar-thumb {
+            background-color: orange;
         }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555; /* Color of the handle on hover */
-        }
-
-        /* Optional: Styling for other scrollbar pseudo-elements */
-        ::-webkit-scrollbar-button {
-            background: #f1f1f1; /* Color of the arrows/buttons */
-        }
-
-        ::-webkit-scrollbar-corner {
-            background: #f1f1f1; /* Color of the bottom corner when both scrollbars are visible */
+        .wrapper::-webkit-scrollbar-track {
+            background: transparent;
         }
     </style>
 </head>
