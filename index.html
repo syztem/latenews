@@ -34,7 +34,10 @@
         }
         iframe.whitepage {
             color-scheme: light dark;
-            filter: invert(1) hue-rotate(180deg);
+            filter: invert(1) hue-rotate(175deg);
+        }
+	.invert-filter:not(img) {
+	  filter: invert() rotate(175deg);
         }
         /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
