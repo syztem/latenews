@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=2.5">
     <title>LateNews</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="/site.webmanifest">  
     <style>
         body, html {
             margin: 0;
             height: 100%;
             overflow: hidden;
-            transform: scale(1.2); /* Zoom in by 20% */
-            transform-origin: top left;
         }
         .wrapper {
             width: 100%;
@@ -28,7 +27,7 @@
             height: 100%;
         }
         iframe {
-            width: 65vw; /* Each iframe takes 65% of the viewport width */
+            width: 60vw; /* Each iframe takes 60% of the viewport width */
             height: 100%;
             border: none;
         }
@@ -48,15 +47,20 @@
         /* Custom scrollbar button styles for Firefox */
         .wrapper {
             scrollbar-color: orange black;
-            scrollbar-width: thick;
+        }
+        .wrapper::-webkit-scrollbar-button {
+            background-color: orange;
+        }
+        .wrapper::-webkit-scrollbar-button:single-button {
+            background-color: orange;
         }
         /* Additional rules for Firefox scrollbar buttons */
         @-moz-document url-prefix() {
             .wrapper {
                 scrollbar-width: thick;
             }
-            .wrapper::-moz-scrollbar {
-                display: none; /* hide default scrollbar */
+            .wrapper::-webkit-scrollbar {
+                display: none;
             }
             .wrapper::-moz-scrollbar-button {
                 background-color: orange;
