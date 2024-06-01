@@ -38,8 +38,10 @@
             filter: invert(1);
 	}
 	iframe.whitepage img {
-	    filter: invert(1);
-
+	    filter: invert(1) hue-rotate(180deg);
+        }
+	.whitepage img {
+	    filter: invert(1) hue-rotate(180deg);
         }
         /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
@@ -73,18 +75,18 @@
     <div class="wrapper">
         <div class="container">
             <iframe src="https://brutalist.report/topic/tech?limit=25"></iframe>
-            <iframe src="https://news.ycombinator.com/best" class="whitepage"></iframe>
+            <iframe class="whitepage" src="https://news.ycombinator.com/best"></iframe>
             <iframe src="https://www.macrumors.com/"></iframe>
-            <iframe src="https://www.anandtech.com/" class="whitepage"></iframe>
-            <iframe src="https://www.androidcentral.com/" class="whitepage"></iframe>
-            <iframe id="triggerIframe" src="https://www.tomshardware.com/" class="whitepage"></iframe>
-            <iframe data-src="https://arstechnica.com/" class="whitepage"></iframe>
-            <iframe data-src="https://gizmodo.com/" class="whitepage"></iframe>
-            <iframe data-src="https://www.bleepingcomputer.com/news/" class="whitepage"></iframe>
-            <iframe data-src="https://www.thurrott.com/blog" class="whitepage"></iframe>
-            <iframe data-src="https://www.schneier.com/" class="whitepage"></iframe>
-            <iframe data-src="https://krebsonsecurity.com/" class="whitepage"></iframe>
-            <iframe data-src="https://simonwillison.net/" class="whitepage"></iframe>
+            <iframe class="whitepage" src="https://www.anandtech.com/"></iframe>
+            <iframe class="whitepage" src="https://www.androidcentral.com/"></iframe>
+            <iframe class="whitepage" id="triggerIframe" src="https://www.tomshardware.com/"></iframe>
+            <iframe class="whitepage" data-src="https://arstechnica.com/"></iframe>
+            <iframe class="whitepage" data-src="https://gizmodo.com/"></iframe>
+            <iframe class="whitepage" data-src="https://www.bleepingcomputer.com/news/"></iframe>
+            <iframe class="whitepage" data-src="https://www.thurrott.com/blog"></iframe>
+            <iframe class="whitepage" data-src="https://www.schneier.com/"></iframe>
+            <iframe class="whitepage" data-src="https://krebsonsecurity.com/"></iframe>
+            <iframe class="whitepage" data-src="https://simonwillison.net/"></iframe>
             <iframe data-src="https://www.techspot.com/"></iframe>
             <iframe data-src="https://www.theverge.com/"></iframe>
         </div>
