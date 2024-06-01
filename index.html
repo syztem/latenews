@@ -70,14 +70,13 @@
             <iframe class="whitepage" src="https://news.ycombinator.com/"></iframe>
             <iframe src="https://www.macrumors.com/"></iframe>
             <iframe src="https://www.techspot.com/"></iframe>
-            <iframe src="https://www.theverge.com/"></iframe>
             <iframe src="https://www.anandtech.com/"></iframe>
-            <iframe src="https://www.androidcentral.com/"></iframe>
-            <iframe id="triggerIframe" src="https://www.tomshardware.com/"></iframe>
-            <iframe data-src="https://arstechnica.com/"></iframe>
-            <iframe data-src="https://gizmodo.com/"></iframe>
+            <iframe id="triggerIframe" src="https://www.androidcentral.com/"></iframe>
             <iframe data-src="https://www.bleepingcomputer.com/news/"></iframe>
             <iframe data-src="https://www.thurrott.com/blog"></iframe>
+            <iframe data-src="https://www.tomshardware.com/"></iframe>
+            <iframe data-src="https://arstechnica.com/"></iframe>
+            <iframe data-src="https://gizmodo.com/"></iframe>
             <iframe data-src="https://www.schneier.com/"></iframe>
             <iframe data-src="https://krebsonsecurity.com/"></iframe>
             <iframe data-src="https://simonwillison.net/"></iframe>
@@ -92,21 +91,6 @@
                 iframe.src = iframe.getAttribute('data-src');
                 iframe.removeAttribute('data-src');
             });
-
-            const whitepageIframes = document.querySelectorAll('iframe.whitepage');
-            whitepageIframes.forEach(iframe => {
-                iframe.onload = () => {
-                    try {
-                        const images = iframe.contentWindow.document.querySelectorAll('img');
-                        images.forEach(img => {
-                            img.style.filter = 'invert(1) hue-rotate(180deg)';
-                        });
-                    } catch (error) {
-                        console.warn('Unable to access iframe content:', error);
-                    }
-                };
-            });
-        });
     </script>
 </body>
 </html>
