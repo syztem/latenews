@@ -35,19 +35,10 @@
 
         iframe.whitepage {
             filter: invert(1) hue-rotate(175deg);
-        
-	}
+        }
 
-	.whitepage img[src$=".jpg" i],
-	.whitepage img[src$=".jpeg" i],
-	.whitepage img[src$=".png" i],
-	.whitepage img[src$=".gif" i],
-	.whitepage img[src$=".svg" i],
-	.whitepage img[src$=".bmp" i],
-	.whitepage img[src$=".webp" i] {
-   	 /* Re-inverts images back to their original colors */
-   	 filter: invert(1);
-
+        iframe.whitepage img {
+            filter: invert(1) hue-rotate(175deg);
         }
 
         /* Custom scrollbar (Chrome, Safari) */
@@ -110,15 +101,14 @@
             const whitepageIframes = document.querySelectorAll('iframe.whitepage');
             whitepageIframes.forEach(iframe => {
                 iframe.onload = () => {
-                    const scriptContent = `
-                        const images = document.querySelectorAll('img');
+                    try {
+                        const images = iframe.contentWindow.document.querySelectorAll('img');
                         images.forEach(img => {
-                            img.style.filter = 'invert(1)';
+                            img.style.filter = 'invert(1) hue-rotate(175deg)';
                         });
-                    `;
-                    const script = document.createElement('script');
-                    script.textContent = scriptContent;
-                    iframe.contentWindow.document.body.appendChild(script);
+                    } catch (error) {
+                        console.warn('Unable to access iframe content:', error);
+                    }
                 };
             });
         });
