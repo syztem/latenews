@@ -50,6 +50,18 @@
 
         }
 
+	.whitepage img[src$=".jpg" i],
+	.whitepage img[src$=".jpeg" i],
+	.whitepage img[src$=".png" i],
+	.whitepage img[src$=".gif" i],
+	.whitepage img[src$=".svg" i],
+	.whitepage img[src$=".bmp" i],
+	.whitepage img[src$=".webp" i] {
+   	 /* Re-inverts images back to their original colors */
+   	 filter: invert(1);
+
+        }
+
         /* Custom scrollbar (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
             height: 12px; /* height of the horizontal scrollbar */
