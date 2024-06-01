@@ -32,14 +32,15 @@
             height: 100%;
             border: none;
         }
-	.whitepage.invert-filter:(img) {
-	    filter: invert(1);
-        }
+
 	.whitepage {
             color-scheme: light dark;
             filter: invert(1);
 	}
 	.whitepage img {
+	    filter: invert(1);
+        }
+	.whitepage.filter:(img) {
 	    filter: invert(1);
         }
         /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
