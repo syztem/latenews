@@ -32,11 +32,13 @@
             height: 100%;
             border: none;
         }
+	iframe.invert-filter:not(img) {
+	    filter: invert() rotate(175deg);
+        }
 	.whitepage {
             color-scheme: light dark;
             filter: invert(1);
 	}
-
 	.whitepage img {
 	    filter: invert(1);
         }
