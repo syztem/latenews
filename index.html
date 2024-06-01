@@ -31,16 +31,10 @@
             width: 66vw; /* Each iframe takes 66% of the viewport width */
             height: 100%;
             border: none;
-            filter: invert(1) hue-rotate(175deg);
-            mix-blend-mode: difference;
         }
-
-        /* Re-invert images in whitepage iframes */
-        iframe.whitepage img {
-            filter: invert(1) hue-rotate(175deg);
-            mix-blend-mode: normal;
+        iframe.whitepage {
+            filter: invert(1) hue-rotate(180deg);
         }
-
         /* Custom scrollbar (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
             height: 12px; /* height of the horizontal scrollbar */
@@ -104,8 +98,7 @@
                     try {
                         const images = iframe.contentWindow.document.querySelectorAll('img');
                         images.forEach(img => {
-                            img.style.filter = 'invert(1) hue-rotate(175deg)';
-                            img.style.mixBlendMode = 'normal';
+                            img.style.filter = 'invert(1) hue-rotate(180deg)';
                         });
                     } catch (error) {
                         console.warn('Unable to access iframe content:', error);
