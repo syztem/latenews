@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LateNews</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">  
     <style>
         body, html {
@@ -33,33 +33,8 @@
             border: none;
         }
 
-	iframe.whitepage {
-            color-scheme: light dark;
+        iframe.whitepage {
             filter: invert(1);
-	}
-
-	iframe.whitepage img[src$=".jpg" i],
-	iframe.whitepage img[src$=".jpeg" i],
-	iframe.whitepage img[src$=".png" i],
-	iframe.whitepage img[src$=".gif" i],
-	iframe.whitepage img[src$=".svg" i],
-	iframe.whitepage img[src$=".bmp" i],
-	iframe.whitepage img[src$=".webp" i] {
-   	 /* Re-inverts images back to their original colors */
-   	 filter: invert(1);
-
-        }
-
-	.whitepage img[src$=".jpg" i],
-	.whitepage img[src$=".jpeg" i],
-	.whitepage img[src$=".png" i],
-	.whitepage img[src$=".gif" i],
-	.whitepage img[src$=".svg" i],
-	.whitepage img[src$=".bmp" i],
-	.whitepage img[src$=".webp" i] {
-   	 /* Re-inverts images back to their original colors */
-   	 filter: invert(1);
-
         }
 
         /* Custom scrollbar (Chrome, Safari) */
@@ -117,6 +92,21 @@
             lazyIframes.forEach(iframe => {
                 iframe.src = iframe.getAttribute('data-src');
                 iframe.removeAttribute('data-src');
+            });
+
+            const whitepageIframes = document.querySelectorAll('iframe.whitepage');
+            whitepageIframes.forEach(iframe => {
+                iframe.onload = () => {
+                    const scriptContent = `
+                        const images = document.querySelectorAll('img');
+                        images.forEach(img => {
+                            img.style.filter = 'invert(1)';
+                        });
+                    `;
+                    const script = document.createElement('script');
+                    script.textContent = scriptContent;
+                    iframe.contentWindow.document.body.appendChild(script);
+                };
             });
         });
     </script>
