@@ -37,13 +37,20 @@
             color-scheme: light dark;
             filter: invert(1);
 	}
-	iframe.whitepage img {
-	    filter: invert(1) hue-rotate(180deg);
+
+	iframe.whitepage img[src$=".jpg" i],
+	iframe.whitepage img[src$=".jpeg" i],
+	iframe.whitepage img[src$=".png" i],
+	iframe.whitepage img[src$=".gif" i],
+	iframe.whitepage img[src$=".svg" i],
+	iframe.whitepage img[src$=".bmp" i],
+	iframe.whitepage img[src$=".webp" i] {
+   	 /* Re-inverts images back to their original colors */
+   	 filter: invert(1);
+
         }
-	.whitepage img {
-	    filter: invert(1) hue-rotate(180deg);
-        }
-        /* Custom scrollbar styles for WebKit-based browsers (Chrome, Safari) */
+
+        /* Custom scrollbar (Chrome, Safari) */
         .wrapper::-webkit-scrollbar {
             height: 12px; /* height of the horizontal scrollbar */
         }
@@ -56,7 +63,7 @@
         .wrapper::-webkit-scrollbar-button {
             background-color: orange; /* arrow button color */
         }
-        /* Custom scrollbar styles for Firefox */
+        /* Custom scrollbar (Firefox) */
         .wrapper {
             scrollbar-color: orange black;
         }
