@@ -1,4 +1,3 @@
-      
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +51,10 @@
         /* Custom scrollbar (Firefox) */
         .wrapper {
             scrollbar-color: orange black;
+            scrollbar-width: auto; /* Ensure scrollbar-width is set for Firefox */
         }
+        /* The following Firefox-specific rules are non-standard for website CSS and can be removed */
+        /*
         .wrapper::-moz-scrollbar {
             background-color: orange;
         }
@@ -62,6 +64,7 @@
                 scrollbar-color: orange black;
             }
         }
+        */
     </style>
 </head>
 <body>
@@ -102,5 +105,3 @@
     </script>
 </body>
 </html>
-
-    
