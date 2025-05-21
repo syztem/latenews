@@ -10,16 +10,57 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">  
     <style>
+        :root {
+            --scrollbar-height: 12px;
+        }
+
         body, html {
             margin: 0;
             height: 100%;
             overflow: hidden;
             background-color: black;
         }
+
+        .top-scrollbar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--scrollbar-height);
+            overflow-x: scroll;
+            overflow-y: hidden;
+            z-index: 1000;
+            background-color: black;
+        }
+
+        .top-scrollbar-filler {
+            width: 1px;
+            height: 1px;
+            visibility: hidden;
+        }
+
+        .top-scrollbar-container::-webkit-scrollbar {
+            height: var(--scrollbar-height); 
+        }
+        .top-scrollbar-container::-webkit-scrollbar-thumb {
+            background-color: orange;
+        }
+        .top-scrollbar-container::-webkit-scrollbar-track {
+            background: black;
+        }
+        .top-scrollbar-container::-webkit-scrollbar-button {
+            background-color: orange; 
+        }
+        .top-scrollbar-container {
+            scrollbar-color: orange black;
+            scrollbar-width: auto;
+        }
+
         .wrapper {
             width: 100%;
-            height: 100%;
-            overflow-x: scroll; /* Changed from 'auto' to 'scroll' */
+            height: calc(100% - var(--scrollbar-height));
+            margin-top: var(--scrollbar-height);
+            overflow-x: hidden;
             overflow-y: hidden;
             white-space: nowrap;
         }
@@ -35,39 +76,13 @@
         iframe.whitepage {
             filter: invert(1) hue-rotate(175deg);
         }
-        /* Custom scrollbar (Chrome, Safari) */
-        .wrapper::-webkit-scrollbar {
-            height: 12px; 
-        }
-        .wrapper::-webkit-scrollbar-thumb {
-            background-color: orange;
-        }
-        .wrapper::-webkit-scrollbar-track {
-            background: black;
-        }
-        .wrapper::-webkit-scrollbar-button {
-            background-color: orange; 
-        }
-        /* Custom scrollbar (Firefox) */
-        .wrapper {
-            scrollbar-color: orange black;
-            scrollbar-width: auto; /* Ensure scrollbar-width is set for Firefox */
-        }
-        /* The following Firefox-specific rules are non-standard for website CSS and can be removed */
-        /*
-        .wrapper::-moz-scrollbar {
-            background-color: orange;
-        }
-        @-moz-document url-prefix() {
-            .wrapper {
-                scrollbar-width: auto;
-                scrollbar-color: orange black;
-            }
-        }
-        */
     </style>
 </head>
 <body>
+    <div class="top-scrollbar-container">
+        <div class="top-scrollbar-filler"></div>
+    </div>
+
     <div class="wrapper">
         <div class="container">
             <iframe src="https://brutalist.report/topic/tech?limit=15"></iframe>
@@ -89,17 +104,62 @@
             <iframe data-src="https://huggingface.co/blog"></iframe>
             <iframe class="whitepage" data-src="https://github.com/trending?since=daily&spoken_language_code=en"></iframe>
             <iframe data-src="https://arxiv.org/search/advanced?advanced=1&terms-0-term=&terms-0-operator=AND&terms-0-field=title&classification-computer_science=y&classification-eess=y&classification-physics_archives=all&classification-q_biology=y&classification-include_cross_list=include&date-filter_by=past_12&date-year=&date-from_date=&date-to_date=&date-date_type=submitted_date&abstracts=show&size=25&order=-announced_date_first"></iframe>
-
-
         </div>
     </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const topScrollbarContainer = document.querySelector('.top-scrollbar-container');
+            const topScrollbarFiller = document.querySelector('.top-scrollbar-filler');
+            const wrapper = document.querySelector('.wrapper');
+            const container = document.querySelector('.container');
             const lazyIframes = document.querySelectorAll('iframe[data-src]');
+
+            const updateScrollbarWidth = () => {
+                topScrollbarFiller.style.width = `${container.scrollWidth}px`;
+                topScrollbarContainer.scrollLeft = wrapper.scrollLeft;
+            };
+
+            let loadedIframesCount = 0;
+            const totalLazyIframes = lazyIframes.length;
+
             lazyIframes.forEach(iframe => {
                 iframe.src = iframe.getAttribute('data-src');
                 iframe.removeAttribute('data-src');
+                iframe.onload = () => {
+                    loadedIframesCount++;
+                    if (loadedIframesCount === totalLazyIframes) {
+                        setTimeout(updateScrollbarWidth, 100); 
+                    }
+                };
+            });
+
+            if (totalLazyIframes === 0) {
+                setTimeout(updateScrollbarWidth, 100);
+            }
+
+            let isScrollingTop = false;
+            let isScrollingContent = false;
+
+            topScrollbarContainer.addEventListener('scroll', () => {
+                if (!isScrollingContent) {
+                    isScrollingTop = true;
+                    wrapper.scrollLeft = topScrollbarContainer.scrollLeft;
+                }
+                isScrollingContent = false;
+            });
+
+            wrapper.addEventListener('scroll', () => {
+                if (!isScrollingTop) {
+                    isScrollingContent = true;
+                    topScrollbarContainer.scrollLeft = wrapper.scrollLeft;
+                }
+                isScrollingTop = false;
+            });
+
+            window.addEventListener('resize', () => {
+                clearTimeout(window.resizeTimer);
+                window.resizeTimer = setTimeout(updateScrollbarWidth, 250);
             });
         });
     </script>
